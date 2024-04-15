@@ -1,16 +1,13 @@
 services:
   # SERVEUR POSTGRES
   bdd:
-    image: "postgres:14-alpine"
+    image: "postgres:16-alpine"
     ports:
       - "5433:5432"
     environment:
       POSTGRES_DB: "backend"
       POSTGRES_PASSWORD: "backend"
       POSTGRES_USER: "backend"
-    volumes:
-      - ./psql:/var/lib/postgresql/data
-    user: 1006:1006
 
   # INTERFACE ADMINER POUR LE PROJET POSTGRESQL
   adminer:
@@ -30,6 +27,10 @@ services:
     volumes:
       - ./backend:/backend
     working_dir: /backend
-    command: npm install && node init-db && npm run dev
+    environment:
+      - PG_URL=postgres://backend:backend@bdd:5432/backend
+    command: sleep inf
     depends_on:
       - bdd
+
+  
