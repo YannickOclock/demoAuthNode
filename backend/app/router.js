@@ -11,7 +11,6 @@ router.use(cors());
 router.use(cookieParser());
 
 router.get('/signin', authController.signin);
-router.get('/me', authController.me);
 router.get('/test', testController.test);
 router.get('/', productController.list);
 router.get('/product/:id', productController.details);
