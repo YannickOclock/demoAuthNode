@@ -1,0 +1,35 @@
+services:
+  # SERVEUR POSTGRES
+  bdd:
+    image: "postgres:14-alpine"
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "backend"
+      POSTGRES_PASSWORD: "backend"
+      POSTGRES_USER: "backend"
+    volumes:
+      - ./psql:/var/lib/postgresql/data
+    user: 1006:1006
+
+  # INTERFACE ADMINER POUR LE PROJET POSTGRESQL
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080 
+    environment:
+      ADMINER_DEFAULT_SERVER: bdd
+    depends_on:
+      - bdd
+
+  # SERVEUR NODEJS
+  node:
+    image: node:18-alpine
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/backend
+    working_dir: /backend
+    command: npm install && node init-db && npm run dev
+    depends_on:
+      - bdd
