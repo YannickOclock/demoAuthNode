@@ -21,6 +21,10 @@ Product.init({
     description: {
         type: DataTypes.TEXT,
     },
+    BrandId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 }, { // dans le 2ème objet on dit dans quelle bdd devront persister les infos
     sequelize, // pour cela on indique le client connecté à la bdd
     modelName: 'Product', // on donne un nom au modèle, cela pourra servir plus tard

@@ -13,9 +13,9 @@ try {
     // Je les recree
     await sequelize.sync();
     // Le seeding
-    await Product.create({ title: 'DVD', description: 'Regardez vos films préférés' });
-    await Product.create({ title: 'Blu-ray', description: 'La HD c\'est cool' });
     await Brand.create({ title: 'Panasonic' });
+    await Product.create({ title: 'DVD', description: 'Regardez vos films préférés', BrandId: 1});
+    await Product.create({ title: 'Blu-ray', description: 'La HD c\'est cool', BrandId: 1});
 } catch (error) {
     console.error(error);
 }
