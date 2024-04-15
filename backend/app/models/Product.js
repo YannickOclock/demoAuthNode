@@ -2,7 +2,6 @@
 import { Model, DataTypes } from 'sequelize';
 // on importe notre client connecté à la base de données
 import sequelize from '../database.js';
-import Brand from './Brand.js';
 
 // on définit le modèle qui étend la classe mère et hérite donc de ses méthodes
 class Product extends Model { }
